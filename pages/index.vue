@@ -1,18 +1,11 @@
-<template>
-    <div class=" bg-green-500">
-        this is home page
-      <button @click="decrement">-</button>
-      {{counter}}
-      <button @click="increment">+</button>
-    </div>
-  </template>
+<template></template>
   
   <script setup lang="ts">
-  import {ref} from 'vue';
-  
-  const counter = ref(0);
+import { ref } from "vue";
 
-  const increment = () =>  counter.value++;
-  const decrement = () =>  counter.value--;
-  </script>
+const counter = ref(0);
+
+const increment = () => counter.value++;
+const decrement = () => counter.value--;
+</script>
   

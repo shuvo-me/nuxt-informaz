@@ -1,16 +1,16 @@
 <template>
   <header>
-    <app-container>
+    <app-container class="border-b-2 border-b-slate-100">
       <div class="flex items-center justify-between py-5 px-1">
         <div class="app-logo">
           <h4 class="text-[20px] text-primary font-normal">Informaz</h4>
         </div>
-        <div class="nav-links">
-          <ul class="flex items-center gap-[20px]">
+        <div class="nav-links hidden md:block">
+          <ul class="flex items-center gap-5 lg:gap-[20px] md:flex-wrap">
             <li
               v-for="item of navLinks"
               :key="item.title"
-              class="text-slate-500 hover:text-[#3055F6]"
+              class="text-slate-500 hover:text-[#3055F6] text-[14px] lg:text-[16px]"
             >
               <NuxtLink :href="`/?${item.query}`">{{ item.title }}</NuxtLink>
             </li>
