@@ -17,13 +17,29 @@
           </ul>
         </div>
         <div class="nav-btns">
-          <ul>
+          <ul class="flex items-center gap-4">
             <li>
               <button
                 type="button"
-                class="border border-slate-200 h-[30px] w-[30px] rounded-md text-[14px] text-slate-500 flex items-center justify-center"
+                class="border border-slate-200 h-[35px] w-[35px] rounded-md text-[14px] text-slate-500 flex items-center justify-center"
+              >
+                <BootstrapIconHeartFill />
+              </button>
+            </li>
+            <li>
+              <button
+                type="button"
+                class="border border-slate-200 h-[35px] w-[35px] rounded-md text-[14px] text-slate-500 flex items-center justify-center"
               >
                 <BootstrapIconPersonFill />
+              </button>
+            </li>
+            <li>
+              <button
+                type="button"
+                class="border border-slate-200 h-[35px] w-[35px] rounded-md text-[14px] text-slate-500 flex items-center justify-center"
+              >
+                <BootstrapIconGearFill />
               </button>
             </li>
           </ul>
