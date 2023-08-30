@@ -21,7 +21,7 @@
     },
     {
       "title": "Science",
-      "icon": "bi bi-flask",
+      "icon": "bi bi-droplet-half",
       "link": "/science"
     },
     {
@@ -86,7 +86,7 @@
     },
     {
       "title": "Automotive",
-      "icon": "bi bi-car",
+      "icon": "bi bi-car-front",
       "link": "/automotive"
     },
     {

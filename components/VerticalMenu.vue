@@ -45,7 +45,7 @@ const navigationLinks: navigationLink[] = [
   },
   {
     to: "/",
-    icon: "bi bi-award-fill",
+    icon: "bi bi-bookmark-plus",
   },
 ];
 </script>
