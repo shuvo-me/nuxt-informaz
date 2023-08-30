@@ -9,5 +9,6 @@ export default defineNuxtConfig({
   }],'nuxt-bootstrap-icons'],
   bootstrapIcons:{
     renderType: "component"
-  }
+  },
+  css: ['@mdi/font/css/materialdesignicons.min.css','bootstrap-icons/font/bootstrap-icons.min.css']
 })

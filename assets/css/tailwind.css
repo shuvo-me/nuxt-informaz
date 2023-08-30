@@ -10,3 +10,20 @@ html,body{
 .text-primary{
     @apply text-[#3055F6]
 }
+
+.custom-scrollbar::-webkit-scrollbar
+{
+	height: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track
+{
+    @apply w-[1px] bg-slate-100;
+}
+
+
+
+.custom-scrollbar::-webkit-scrollbar-thumb
+{
+	@apply bg-slate-300/[0.4] rounded-3xl
+}
