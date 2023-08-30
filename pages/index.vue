@@ -20,11 +20,13 @@
       </small>
     </h4>
     <div class="py-5 custom-scrollbar">
-      <ul class="flex items-center gap-10 flex-wrap">
+      <ul
+        class="grid grid-cols-2 min-[360px]:grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-7 md:gap-10 flex-wrap"
+      >
         <li v-for="item in categories" :key="item.link">
           <NuxtLink
             :to="item.link"
-            class="bg-slate-100/[0.7] p-[10px] rounded-xl flex flex-col gap-2 items-center h-[120px] w-[140px] aspect-square text-slate-600/[0.7]"
+            class="bg-slate-100/[0.7] p-[7px] md:p-[10px] rounded-xl flex flex-col gap-2 items-center h-[120px] md:h-[120px] w-[120px] md:w-[140px] aspect-square text-slate-600/[0.7]"
           >
             <i :class="`${item.icon} text-[24px] md:text-[30px]`"></i>
             <p v-text="item.title" />
