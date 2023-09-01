@@ -23,6 +23,22 @@
         Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quasi,
         commodi.
       </h5>
+      <div class="flex items-start mt-3 gap-2">
+        <img
+          src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fHVzZXIlMjBpbWFnZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60"
+          alt="user-img"
+          class="h-[30px] w-[30px] rounded-full object-cover"
+        />
+        <div class="w-full">
+          <p class="text-[12px] text-slate-700">Willam Falade</p>
+          <span
+            class="flex justify-between items-center text-slate-500 text-[12px]"
+          >
+            <small class="text-[11px]">Photographer</small>
+            <small>2 Feb, 2033</small>
+          </span>
+        </div>
+      </div>
     </div>
   </div>
 </template>
