@@ -25,8 +25,8 @@
       >
         <li v-for="item in categories" :key="item.link">
           <NuxtLink
-            :to="item.link"
-            class="bg-slate-100/[0.7] p-[7px] md:p-[8px] rounded-xl flex flex-col gap-2 items-center h-[110px] w-[120px] aspect-square text-slate-600/[0.7]"
+            :to="`?${item.link}`"
+            class="bg-slate-100/[0.7] p-[7px] md:p-[8px] rounded-xl flex flex-col gap-2 items-center h-[110px] w-[120px] aspect-square text-slate-600/[0.7] hover:bg-blue-600 hover:text-white transition-all duration-100 ease-in"
           >
             <i :class="`${item.icon} text-[24px] md:text-[30px]`"></i>
             <p v-text="item.title" class="text-[15px]" />
