@@ -7,7 +7,7 @@
         class="w-full max-h-[200px] rounded-lg"
       />
       <div
-        class="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-black/[0.4] to-black/[0.6] rounded-lg flex justify-center items-center text-white text-[17px] md:text-[20px] px-4 flex-col"
+        class="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-black/[0.4] to-black/[0.6] rounded-lg flex justify-center items-center text-white text-[17px] md:text-[19px] px-4 flex-col"
       >
         <h4 class="text-center line-clamp-2">
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Beatae,
