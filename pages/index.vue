@@ -50,6 +50,11 @@
     >
       <NewsCard news="" v-for="n in [...new Array(8)]" :key="n" />
     </div>
+    <div>
+      <button class="bg-blue-600 text-white text-[16px] rounded-md px-4 py-2">
+        Load more
+      </button>
+    </div>
   </section>
 </template>
   
