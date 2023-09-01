@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <NuxtLink to="/news/great-news" class="">
     <div class="rounded-md relative max-h-[150px] overflow-hidden group">
       <img
         src="https://images.unsplash.com/photo-1545665277-5937489579f2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8c2NyZWVufGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60"
@@ -40,7 +40,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </NuxtLink>
 </template>
 
 <script setup lang="ts">
