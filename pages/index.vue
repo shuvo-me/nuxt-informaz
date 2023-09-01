@@ -19,7 +19,7 @@
         View all
       </small>
     </h4>
-    <div class="py-5 custom-scrollbar">
+    <div class="py-4 custom-scrollbar">
       <ul
         class="grid grid-cols-2 min-[360px]:grid-cols-3 sm:grid-cols-4 lg:grid-cols-7 gap-7 md:gap-7 flex-wrap"
       >
@@ -35,10 +35,18 @@
       </ul>
     </div>
   </section>
-  <section class="mt-5">
+  <section class="mt-5 border-b border-slate-200 pb-5">
     <h4 class="text-slate-500 text-[17px]">Today headlines</h4>
     <div
-      class="grid grid-cols-1 min-[500px]:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10 md:gap-11"
+      class="grid grid-cols-1 min-[500px]:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10 md:gap-11 mt-4"
+    >
+      <HeadLineCard news="" v-for="n in [...new Array(8)]" :key="n" />
+    </div>
+  </section>
+  <section class="mt-5 pb-5">
+    <h4 class="text-slate-500 text-[17px]">Latest news</h4>
+    <div
+      class="grid grid-cols-1 min-[500px]:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10 md:gap-11 mt-4"
     >
       <HeadLineCard news="" v-for="n in [...new Array(8)]" :key="n" />
     </div>
