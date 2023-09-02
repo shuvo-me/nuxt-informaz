@@ -1,15 +1,16 @@
 <template>
   <div class="flex gap-x-2">
     <img
-      src="https://plus.unsplash.com/premium_photo-1664197368374-605ce8ec8f54?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fG5ld3N8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60"
+      :src="news.urlToImage"
       alt="headline-img"
       class="object-cover h-auto w-[55px] rounded-md"
     />
     <div>
-      <p class="text-[14px] text-black/[0.9] max-w-[180px] truncate">
-        Lorem ipsum dolor sit amet. Lorem ipsum dolor sit sit amet. Lorem ipsum
-        dolor sit amet.
-      </p>
+      <p
+        class="text-[14px] text-black/[0.9] max-w-[180px] truncate"
+        v-text="news.title"
+      />
+
       <div class="flex justify-between items-center mt-3">
         <small
           class="text-[11px] bg-blue-100 text-blue-600 px-2 py-[2px] rounded-md"
@@ -31,8 +32,9 @@
 </template>
 
 <script setup lang="ts">
+import { SingleNewsDataTypes } from "~/types";
 defineProps<{
-  news: any;
+  news: SingleNewsDataTypes;
 }>();
 </script>
 

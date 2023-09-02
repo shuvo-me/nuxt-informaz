@@ -49,7 +49,7 @@
       :class="`grid grid-cols-1 min-[500px]:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10 md:gap-11 mt-4 relative `"
       v-else
     >
-      <head-line-card news="" v-for="n in news" :key="n" />
+      <head-line-card :news="n" v-for="n in news" :key="n" />
     </div>
   </section>
   <section class="mt-5 pb-5">
@@ -69,6 +69,7 @@ import newsCategories from "~/utils";
 const length = ref<number>(7);
 const headLinePage = ref<number>(1);
 const newsPage = ref<number>(1);
+const totalHeadlines = ref<number>(0);
 
 const {
   data: news,
@@ -87,8 +88,6 @@ const {
     lazy: true,
   }
 );
-
-// console.log({ data: toRaw(posts.value), err: error.value, p: pending.value });
 
 const categories = computed(() => {
   return newsCategories.slice(0, length.value);
