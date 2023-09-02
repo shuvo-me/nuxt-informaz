@@ -36,7 +36,23 @@
     </div>
   </section>
   <section class="mt-5 border-b border-slate-200 pb-5">
-    <h4 class="text-slate-500 text-[17px]">Today headlines</h4>
+    <div class="text-slate-500 text-[17px] flex justify-between items-center">
+      <h4>Today headlines</h4>
+      <div class="flex gap-5 items-center">
+        <span
+          class="hover:text-blue-600 transition-all duration-100"
+          role="button"
+          ><i class="bi bi-arrow-left"
+        /></span>
+        <small>Page: {{ headLinePage }}/{{ totalHeadlinePages }}</small>
+        <span
+          class="hover:text-blue-600 transition-all duration-100"
+          role="button"
+          @click="headLinePage++"
+          ><i class="bi bi-arrow-right"
+        /></span>
+      </div>
+    </div>
 
     <div
       v-if="isLoadingHeadLines"
@@ -49,7 +65,11 @@
       :class="`grid grid-cols-1 min-[500px]:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10 md:gap-11 mt-4 relative `"
       v-else
     >
-      <head-line-card :news="n" v-for="n in news" :key="n" />
+      <head-line-card
+        :head-line="headLine"
+        v-for="headLine in headLines"
+        :key="headLine?.title"
+      />
     </div>
   </section>
   <section class="mt-5 pb-5">
@@ -70,27 +90,39 @@ const length = ref<number>(7);
 const headLinePage = ref<number>(1);
 const newsPage = ref<number>(1);
 const totalHeadlines = ref<number>(0);
+const category = ref<string>("business");
 
 const {
-  data: news,
+  data: headLines,
   pending: isLoadingHeadLines,
   error,
   refresh,
-} = await useFetch(
-  `https://newsapi.org/v2/everything?q=food&page=${headLinePage.value}&pageSize=8`,
-  {
-    headers: {
-      "X-Api-Key": "827cba1bac0e47c58026dbc6d6e0e914",
-    },
-    transform: (topHeadLines: any) =>
-      topHeadLines.articles.filter((item) => item.urlToImage),
-    server: false,
-    lazy: true,
-  }
-);
+} = await useFetch(`https://newsapi.org/v2/top-headlines`, {
+  headers: {
+    "X-Api-Key": "827cba1bac0e47c58026dbc6d6e0e914",
+  },
+  transform: (topHeadLines: any) => {
+    console.log({ topHeadLines });
+    totalHeadlines.value = topHeadLines.totalResults;
+    return topHeadLines.articles.filter((item) => item.urlToImage);
+  },
+  query: {
+    country: "us",
+    category: category.value,
+    page: headLinePage.value,
+    pageSize: 8,
+  },
+  server: false,
+  lazy: true,
+  watch: [headLinePage],
+});
 
 const categories = computed(() => {
   return newsCategories.slice(0, length.value);
+});
+
+const totalHeadlinePages = computed(() => {
+  return Math.ceil(totalHeadlines.value / 8);
 });
 </script>
   

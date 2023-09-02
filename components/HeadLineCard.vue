@@ -1,14 +1,14 @@
 <template>
   <div class="flex gap-x-2">
     <img
-      :src="news.urlToImage"
+      :src="headLine.urlToImage"
       alt="headline-img"
       class="object-cover h-auto w-[55px] rounded-md"
     />
     <div>
       <p
         class="text-[14px] text-black/[0.9] max-w-[180px] truncate"
-        v-text="news.title"
+        v-text="headLine.title"
       />
 
       <div class="flex justify-between items-center mt-3">
@@ -34,7 +34,7 @@
 <script setup lang="ts">
 import { SingleNewsDataTypes } from "~/types";
 defineProps<{
-  news: SingleNewsDataTypes;
+  headLine: SingleNewsDataTypes;
 }>();
 </script>
 
