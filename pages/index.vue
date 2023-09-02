@@ -39,18 +39,23 @@
     <div class="text-slate-500 text-[17px] flex justify-between items-center">
       <h4>Today headlines</h4>
       <div class="flex gap-5 items-center">
-        <span
-          class="hover:text-blue-600 transition-all duration-100"
+        <button
+          class="hover:text-blue-600 transition-all duration-100 disabled:opacity-40"
           role="button"
-          ><i class="bi bi-arrow-left"
-        /></span>
+          :disabled="headLinePage <= 1"
+          @click="headLinePage--"
+        >
+          <i class="bi bi-arrow-left" />
+        </button>
         <small>Page: {{ headLinePage }}/{{ totalHeadlinePages }}</small>
-        <span
-          class="hover:text-blue-600 transition-all duration-100"
-          role="button"
+        <button
+          type="button"
+          class="hover:text-blue-600 transition-all duration-100 disabled:opacity-40"
           @click="headLinePage++"
-          ><i class="bi bi-arrow-right"
-        /></span>
+          :disabled="headLinePage >= totalHeadlinePages"
+        >
+          <i class="bi bi-arrow-right" />
+        </button>
       </div>
     </div>
 
@@ -97,25 +102,31 @@ const {
   pending: isLoadingHeadLines,
   error,
   refresh,
-} = await useFetch(`https://newsapi.org/v2/top-headlines`, {
-  headers: {
-    "X-Api-Key": "827cba1bac0e47c58026dbc6d6e0e914",
-  },
-  transform: (topHeadLines: any) => {
-    console.log({ topHeadLines });
-    totalHeadlines.value = topHeadLines.totalResults;
-    return topHeadLines.articles.filter((item) => item.urlToImage);
-  },
-  query: {
-    country: "us",
-    category: category.value,
-    page: headLinePage.value,
-    pageSize: 8,
-  },
-  server: false,
-  lazy: true,
-  watch: [headLinePage],
-});
+} = await useAsyncData(
+  "headlines",
+  () =>
+    $fetch(`https://newsapi.org/v2/top-headlines`, {
+      headers: {
+        "X-Api-Key": "827cba1bac0e47c58026dbc6d6e0e914",
+      },
+      query: {
+        country: "us",
+        category: category.value,
+        page: headLinePage.value,
+        pageSize: 8,
+      },
+    }),
+  {
+    transform: (topHeadLines: any) => {
+      console.log({ topHeadLines });
+      totalHeadlines.value = topHeadLines.totalResults;
+      return topHeadLines.articles.filter((item) => item.urlToImage);
+    },
+    server: false,
+    lazy: true,
+    watch: [headLinePage],
+  }
+);
 
 const categories = computed(() => {
   return newsCategories.slice(0, length.value);
