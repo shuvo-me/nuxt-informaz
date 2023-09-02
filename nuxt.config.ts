@@ -10,5 +10,5 @@ export default defineNuxtConfig({
   bootstrapIcons:{
     renderType: "component"
   },
-  css: ['@mdi/font/css/materialdesignicons.min.css','bootstrap-icons/font/bootstrap-icons.min.css'],
+  css: ['@mdi/font/css/materialdesignicons.min.css','bootstrap-icons/font/bootstrap-icons.min.css']
 })

@@ -37,10 +37,19 @@
   </section>
   <section class="mt-5 border-b border-slate-200 pb-5">
     <h4 class="text-slate-500 text-[17px]">Today headlines</h4>
+
     <div
-      class="grid grid-cols-1 min-[500px]:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10 md:gap-11 mt-4"
+      v-if="isLoadingHeadLines"
+      :class="`grid grid-cols-1 min-[500px]:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10 md:gap-11 mt-4 relative `"
     >
-      <head-line-card news="" v-for="n in [...new Array(8)]" :key="n" />
+      <top-head-line-skeleton-loader v-for="n in [...new Array(8)]" :key="n" />
+    </div>
+
+    <div
+      :class="`grid grid-cols-1 min-[500px]:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10 md:gap-11 mt-4 relative `"
+      v-else
+    >
+      <head-line-card news="" v-for="n in news" :key="n" />
     </div>
   </section>
   <section class="mt-5 pb-5">
@@ -53,11 +62,33 @@
   </section>
 </template>
   
-  <script setup lang="ts">
+  <script setup lang="ts" async>
 import { ref } from "vue";
 import newsCategories from "~/utils";
 
 const length = ref<number>(7);
+const headLinePage = ref<number>(1);
+const newsPage = ref<number>(1);
+
+const {
+  data: news,
+  pending: isLoadingHeadLines,
+  error,
+  refresh,
+} = await useFetch(
+  `https://newsapi.org/v2/everything?q=food&page=${headLinePage.value}&pageSize=8`,
+  {
+    headers: {
+      "X-Api-Key": "827cba1bac0e47c58026dbc6d6e0e914",
+    },
+    transform: (topHeadLines: any) =>
+      topHeadLines.articles.filter((item) => item.urlToImage),
+    server: false,
+    lazy: true,
+  }
+);
+
+// console.log({ data: toRaw(posts.value), err: error.value, p: pending.value });
 
 const categories = computed(() => {
   return newsCategories.slice(0, length.value);
