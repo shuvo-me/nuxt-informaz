@@ -2,7 +2,12 @@
   <app-header />
 
   <app-container>
-    <NuxtLoadingIndicator />
+    <nuxt-loading-indicator
+      color="#00DC82"
+      :height="3"
+      :throttle="0"
+      :duration="400"
+    />
     <div class="flex flex-col md:flex-row pt-[30px] md:gap-10 w-full">
       <div class="order-2 md:order-1">
         <vertical-menu />

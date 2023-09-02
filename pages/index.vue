@@ -40,7 +40,7 @@
     <div
       class="grid grid-cols-1 min-[500px]:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10 md:gap-11 mt-4"
     >
-      <HeadLineCard news="" v-for="n in [...new Array(8)]" :key="n" />
+      <head-line-card news="" v-for="n in [...new Array(8)]" :key="n" />
     </div>
   </section>
   <section class="mt-5 pb-5">
@@ -48,13 +48,8 @@
     <div
       class="grid grid-cols-1 min-[500px]:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10 md:gap-11 mt-4"
     >
-      <NewsCard news="" v-for="n in [...new Array(8)]" :key="n" />
+      <news-card news="" v-for="n in [...new Array(8)]" :key="n" />
     </div>
-    <!-- <div>
-      <button class="bg-blue-600 text-white text-[16px] rounded-md px-4 py-2">
-        Load more
-      </button>
-    </div> -->
   </section>
 </template>
   
