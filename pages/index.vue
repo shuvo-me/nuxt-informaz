@@ -105,17 +105,17 @@ const {
 } = await useAsyncData(
   "headlines",
   () =>
-    $fetch(`https://newsapi.org/v2/top-headlines`, {
-      headers: {
-        "X-Api-Key": "827cba1bac0e47c58026dbc6d6e0e914",
-      },
-      query: {
-        country: "us",
-        category: category.value,
-        page: headLinePage.value,
-        pageSize: 8,
-      },
-    }),
+    $fetch(
+      `https://newsapi.org/v2/top-headlines?apiKey=827cba1bac0e47c58026dbc6d6e0e914`,
+      {
+        query: {
+          country: "us",
+          category: category.value,
+          page: headLinePage.value,
+          pageSize: 8,
+        },
+      }
+    ),
   {
     transform: (topHeadLines: any) => {
       console.log({ topHeadLines });
