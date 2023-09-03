@@ -81,7 +81,28 @@
     </div>
   </section>
   <section class="mt-5 pb-5">
-    <h4 class="text-slate-500 text-[17px]">Latest news</h4>
+    <div class="text-slate-500 text-[17px] flex justify-between items-center">
+      <h4>Latest News.</h4>
+      <div class="flex gap-5 items-center">
+        <button
+          class="hover:text-blue-600 transition-all duration-100 disabled:opacity-40"
+          role="button"
+          :disabled="latestNewsPage <= 0"
+          @click="latestNewsPage--"
+        >
+          <i class="bi bi-arrow-left" />
+        </button>
+        <small>Page: {{ latestNewsPage }}/{{ totalLatestNews }}</small>
+        <button
+          type="button"
+          class="hover:text-blue-600 transition-all duration-100 disabled:opacity-40"
+          @click="latestNewsPage++"
+          :disabled="latestNewsPage >= totalLatestNews"
+        >
+          <i class="bi bi-arrow-right" />
+        </button>
+      </div>
+    </div>
     <div
       class="grid grid-cols-1 min-[500px]:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10 md:gap-11 mt-4"
     >
@@ -100,8 +121,9 @@ console.log({ cc: runtimeConfig.public });
 
 const length = ref<number>(7);
 const headLinePage = ref<number>(0);
-const newsPage = ref<number>(1);
+const latestNewsPage = ref<number>(0);
 const totalHeadlines = ref<number>(0);
+const totalLatestNews = ref<number>(0);
 const category = ref<string>("world-news");
 
 watch(category, (newCategory) => {
@@ -140,6 +162,28 @@ const {
     server: false,
     lazy: true,
     watch: [headLinePage, category],
+  }
+);
+
+const { data: latesNews, pending: isLoadingLatestNews } = await useAsyncData(
+  "headlines",
+  () =>
+    $fetch(`http://api.mediastack.com/v1/news`, {
+      query: {
+        keywords: category.value,
+        offset: latestNewsPage.value,
+        limit: 8,
+        access_key: runtimeConfig.public.API_KEY,
+      },
+    }),
+  {
+    transform: (latestNews: any) => {
+      totalLatestNews.value = latestNews.pagination.total;
+      return latestNews.data.filter((item: SingleNewsDataTypes) => item);
+    },
+    server: false,
+    lazy: true,
+    watch: [latestNewsPage, category],
   }
 );
 </script>
