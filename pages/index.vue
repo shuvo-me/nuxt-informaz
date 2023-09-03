@@ -24,13 +24,16 @@
         class="grid grid-cols-2 min-[360px]:grid-cols-3 sm:grid-cols-4 lg:grid-cols-7 gap-7 md:gap-7 flex-wrap"
       >
         <li v-for="item in categories" :key="item.link">
-          <NuxtLink
-            :to="`?${item.link}`"
-            class="bg-slate-100/[0.7] p-[7px] md:p-[8px] rounded-xl flex flex-col gap-2 items-center h-[110px] w-[120px] aspect-square text-slate-600/[0.7] hover:bg-blue-600 hover:text-white transition-all duration-100 ease-in"
+          <div
+            role="button"
+            @click="category = item.link"
+            :class="`bg-slate-100/[0.7] p-[7px] md:p-[8px] rounded-xl flex flex-col gap-2 items-center h-[110px] w-[120px] aspect-square text-slate-600/[0.7] hover:bg-blue-600 hover:text-white transition-all duration-100 ease-in ${
+              category === item.link ? 'active' : ''
+            }`"
           >
             <i :class="`${item.icon} text-[24px] md:text-[30px]`"></i>
             <p v-text="item.title" class="text-[15px]" />
-          </NuxtLink>
+          </div>
         </li>
       </ul>
     </div>
@@ -92,11 +95,26 @@ import { ref } from "vue";
 import { SingleNewsDataTypes } from "~/types";
 import newsCategories from "~/utils";
 
+const runtimeConfig = useRuntimeConfig();
+console.log({ cc: runtimeConfig.public });
+
 const length = ref<number>(7);
 const headLinePage = ref<number>(0);
 const newsPage = ref<number>(1);
 const totalHeadlines = ref<number>(0);
-const category = ref<string>("business");
+const category = ref<string>("world-news");
+
+watch(category, (newCategory) => {
+  console.log({ newCategory });
+});
+
+const categories = computed(() => {
+  return newsCategories.slice(0, length.value);
+});
+
+const totalHeadlinePages = computed(() => {
+  return Math.ceil(totalHeadlines.value / 8);
+});
 
 const {
   data: headLines,
@@ -111,7 +129,7 @@ const {
         keywords: category.value,
         offset: headLinePage.value,
         limit: 8,
-        access_key: "cf9b63c48b2c98d98e8b6a336657c354",
+        access_key: runtimeConfig.public.API_KEY,
       },
     }),
   {
@@ -121,16 +139,8 @@ const {
     },
     server: false,
     lazy: true,
-    watch: [headLinePage],
+    watch: [headLinePage, category],
   }
 );
-
-const categories = computed(() => {
-  return newsCategories.slice(0, length.value);
-});
-
-const totalHeadlinePages = computed(() => {
-  return Math.ceil(totalHeadlines.value / 8);
-});
 </script>
   

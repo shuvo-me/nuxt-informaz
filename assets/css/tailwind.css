@@ -27,3 +27,7 @@ html,body{
 {
 	@apply bg-slate-300/[0.4] rounded-3xl
 }
+
+.active{
+    @apply bg-blue-600 text-white;
+}
