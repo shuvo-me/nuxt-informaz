@@ -42,7 +42,7 @@
         <button
           class="hover:text-blue-600 transition-all duration-100 disabled:opacity-40"
           role="button"
-          :disabled="headLinePage <= 1"
+          :disabled="headLinePage <= 0"
           @click="headLinePage--"
         >
           <i class="bi bi-arrow-left" />
@@ -89,10 +89,11 @@
   
   <script setup lang="ts" async>
 import { ref } from "vue";
+import { SingleNewsDataTypes } from "~/types";
 import newsCategories from "~/utils";
 
 const length = ref<number>(7);
-const headLinePage = ref<number>(1);
+const headLinePage = ref<number>(0);
 const newsPage = ref<number>(1);
 const totalHeadlines = ref<number>(0);
 const category = ref<string>("business");
@@ -105,22 +106,18 @@ const {
 } = await useAsyncData(
   "headlines",
   () =>
-    $fetch(
-      `https://newsapi.org/v2/top-headlines?apiKey=827cba1bac0e47c58026dbc6d6e0e914`,
-      {
-        query: {
-          country: "us",
-          category: category.value,
-          page: headLinePage.value,
-          pageSize: 8,
-        },
-      }
-    ),
+    $fetch(`http://api.mediastack.com/v1/news`, {
+      query: {
+        keywords: category.value,
+        offset: headLinePage.value,
+        limit: 8,
+        access_key: "cf9b63c48b2c98d98e8b6a336657c354",
+      },
+    }),
   {
     transform: (topHeadLines: any) => {
-      console.log({ topHeadLines });
-      totalHeadlines.value = topHeadLines.totalResults;
-      return topHeadLines.articles.filter((item) => item.urlToImage);
+      totalHeadlines.value = topHeadLines.pagination.total;
+      return topHeadLines.data.filter((item: SingleNewsDataTypes) => item);
     },
     server: false,
     lazy: true,

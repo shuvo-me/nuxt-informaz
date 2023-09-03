@@ -1,14 +1,13 @@
 export interface SingleNewsDataTypes{
-    "source": {
-        "id": null | number,
-        "name": string
-      },
-      "author": string,
-      "title": string,
-      "description": string,
-      "url": string,
-      "urlToImage": string,
-      "publishedAt": string,
-      "content": string
+  "author": string,
+  "title": string,
+  "description": string,
+  "url": string,
+  "source": string,
+  "image": string,
+  "category": string,
+  "language": string,
+  "country": string,
+  "published_at": string
 }
 

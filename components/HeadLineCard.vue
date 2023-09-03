@@ -1,9 +1,16 @@
 <template>
   <div class="flex gap-x-2">
     <img
-      :src="headLine.urlToImage"
+      v-if="!headLine.image"
+      src="~/assets/images/Placeholder_view_vector.svg.png"
+      alt="headline-placeholder-img"
+      class="object-cover h-[55px] w-[55px] rounded-md"
+    />
+    <img
+      :src="headLine.image"
       alt="headline-img"
-      class="object-cover h-auto w-[55px] rounded-md"
+      class="object-cover h-[55px] w-[55px] rounded-md"
+      v-else
     />
     <div>
       <p
