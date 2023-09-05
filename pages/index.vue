@@ -105,8 +105,19 @@
     </div>
     <div
       class="grid grid-cols-1 min-[500px]:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10 md:gap-11 mt-4"
+      v-if="!isLoadingLatestNews"
     >
-      <news-card news="" v-for="n in [...new Array(8)]" :key="n" />
+      <news-card-skeleton-loading />
+    </div>
+    <div
+      class="grid grid-cols-1 min-[500px]:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10 md:gap-11 mt-4"
+      v-else
+    >
+      <news-card
+        :latest-news="latestNews"
+        v-for="latestNews in latesNews"
+        :key="latestNews.title"
+      />
     </div>
   </section>
 </template>

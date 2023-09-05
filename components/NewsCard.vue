@@ -2,9 +2,16 @@
   <NuxtLink to="/news/great-news" class="">
     <div class="rounded-md relative max-h-[150px] overflow-hidden group">
       <img
-        src="https://images.unsplash.com/photo-1545665277-5937489579f2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8c2NyZWVufGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60"
+        :src="latestNews.image"
         alt="news-img"
         class="h-full w-full group-hover:scale-150 transition-all duration-100"
+        v-if="latestNews.image"
+      />
+      <img
+        src="~/assets/images/Placeholder_view_vector.svg.png"
+        alt="news-img"
+        class="h-full w-full group-hover:scale-150 transition-all duration-100"
+        v-else
       />
       <span
         class="absolute z-10 bottom-2 right-2 bg-white rounded-full text-black text-[12px] px-1 py-1 gap-2 flex items-center"
@@ -19,10 +26,8 @@
       </span>
     </div>
     <div class="mt-4">
-      <h5 class="line-clamp-2 text-[14px]">
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quasi,
-        commodi.
-      </h5>
+      <h5 class="line-clamp-2 text-[14px]" v-text="latestNews.title" />
+
       <div class="flex items-start mt-3 gap-2">
         <img
           src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fHVzZXIlMjBpbWFnZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60"
@@ -30,7 +35,7 @@
           class="h-[30px] w-[30px] rounded-full object-cover"
         />
         <div class="w-full">
-          <p class="text-[12px] text-slate-700">Willam Falade</p>
+          <p class="text-[12px] text-slate-700" v-text="latestNews.author" />
           <span
             class="flex justify-between items-center text-slate-500 text-[12px]"
           >
@@ -44,5 +49,10 @@
 </template>
 
 <script setup lang="ts">
+import { SingleNewsDataTypes } from "~/types";
+
+defineProps<{
+  latestNews: SingleNewsDataTypes;
+}>();
 </script>
 
