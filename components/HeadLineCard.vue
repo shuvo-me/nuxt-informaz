@@ -1,5 +1,5 @@
 <template>
-  <div class="flex gap-x-2">
+  <NuxtLink :to="`/news/${headLine.title}`" class="flex gap-x-2">
     <img
       v-if="!headLine.image"
       src="~/assets/images/Placeholder_view_vector.svg.png"
@@ -36,7 +36,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </NuxtLink>
 </template>
 
 <script setup lang="ts">
