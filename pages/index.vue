@@ -105,9 +105,9 @@
     </div>
     <div
       class="grid grid-cols-1 min-[500px]:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10 md:gap-11 mt-4"
-      v-if="!isLoadingLatestNews"
+      v-if="isLoadingLatestNews"
     >
-      <news-card-skeleton-loading />
+      <news-card-skeleton-loading v-for="n in [...new Array(8)]" :key="n" />
     </div>
     <div
       class="grid grid-cols-1 min-[500px]:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10 md:gap-11 mt-4"
@@ -177,7 +177,7 @@ const {
 );
 
 const { data: latesNews, pending: isLoadingLatestNews } = await useAsyncData(
-  "headlines",
+  "latest-news",
   () =>
     $fetch(`http://api.mediastack.com/v1/news`, {
       query: {

@@ -1,7 +1,8 @@
 <template>
   <NuxtLink to="/news/great-news" class="">
-    <div class="rounded-md relative max-h-[150px] overflow-hidden group">
+    <div class="rounded-md relative max-h-[130px] overflow-hidden group">
       <img
+        @error="handleImageError"
         :src="latestNews.image"
         alt="news-img"
         class="h-full w-full group-hover:scale-150 transition-all duration-100"
@@ -50,9 +51,14 @@
 
 <script setup lang="ts">
 import { SingleNewsDataTypes } from "~/types";
+import PlaceHolderImage from "~/assets/images/Placeholder_view_vector.svg.png";
 
 defineProps<{
   latestNews: SingleNewsDataTypes;
 }>();
+
+const handleImageError = (err: any) => {
+  err.target.src = PlaceHolderImage;
+};
 </script>
 

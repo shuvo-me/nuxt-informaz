@@ -11,6 +11,7 @@
       alt="headline-img"
       class="object-cover h-[55px] w-[55px] rounded-md"
       v-else
+      @error="handleImageError"
     />
     <div>
       <p
@@ -40,8 +41,12 @@
 
 <script setup lang="ts">
 import { SingleNewsDataTypes } from "~/types";
+import PlaceHolderImage from "~/assets/images/Placeholder_view_vector.svg.png";
 defineProps<{
   headLine: SingleNewsDataTypes;
 }>();
+const handleImageError = (err: any) => {
+  err.target.src = PlaceHolderImage;
+};
 </script>
 
