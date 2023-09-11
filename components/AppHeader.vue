@@ -3,7 +3,9 @@
     <app-container class="border-b-2 border-b-slate-100">
       <div class="flex items-center justify-between py-5 px-1">
         <div class="app-logo">
-          <h4 class="text-[20px] font-normal">Articles</h4>
+          <NuxtLink to="/">
+            <h4 class="text-[20px] font-normal">Articles</h4>
+          </NuxtLink>
         </div>
 
         <div class="nav-btns">

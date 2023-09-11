@@ -27,8 +27,11 @@
       </span>
     </div>
     <div class="mt-4">
-      <h5 class="line-clamp-2 text-[14px]" v-text="article.title" />
-
+      <span class="line-clamp-3 text-[14px]" v-text="article.title" />
+      <p
+        v-html="article.description"
+        class="my-5 text-slate-800 text-[14px] px-2 border-l-2 border-slate-300"
+      />
       <div class="flex items-start mt-3 gap-2">
         <img
           :src="article.user.profile_image"
