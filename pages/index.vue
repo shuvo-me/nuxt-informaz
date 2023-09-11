@@ -40,7 +40,7 @@
   </section>
   <section class="mt-5 border-b border-slate-200 pb-5">
     <div class="text-slate-500 text-[17px] flex justify-between items-center">
-      <h4>Today headlines</h4>
+      <h4>Top Articles</h4>
       <div class="flex gap-5 items-center">
         <button
           class="hover:text-blue-600 transition-all duration-100 disabled:opacity-40"
@@ -50,7 +50,7 @@
         >
           <i class="bi bi-arrow-left" />
         </button>
-        <small>Page: {{ headLinePage }}/{{ totalHeadlinePages }}</small>
+        <small>Page: {{ headLinePage }}/ 5</small>
         <button
           type="button"
           class="hover:text-blue-600 transition-all duration-100 disabled:opacity-40"
@@ -124,14 +124,14 @@
   
   <script setup lang="ts" async>
 import { ref } from "vue";
-import { SingleNewsDataTypes } from "~/types";
+import { ArticleDataTypes } from "~/types";
 import newsCategories from "~/utils";
 
 const runtimeConfig = useRuntimeConfig();
 console.log({ cc: runtimeConfig.public });
 
 const length = ref<number>(7);
-const headLinePage = ref<number>(0);
+const headLinePage = ref<number>(1);
 const latestNewsPage = ref<number>(0);
 const totalHeadlines = ref<number>(0);
 const totalLatestNews = ref<number>(0);
@@ -157,18 +157,19 @@ const {
 } = await useAsyncData(
   "headlines",
   () =>
-    $fetch(`http://api.mediastack.com/v1/news`, {
+    $fetch(`https://dev.to/api/articles?top=4`, {
       query: {
-        keywords: category.value,
-        offset: headLinePage.value,
-        limit: 8,
-        access_key: runtimeConfig.public.API_KEY,
+        // tag: category.value,
+        page: headLinePage.value.toString(),
+        per_page: 8,
+        // apikey: "pub_288645e192f85eb5f95b49fa7d6ae862e79cb",
       },
     }),
   {
     transform: (topHeadLines: any) => {
+      console.log({ topHeadLines });
       totalHeadlines.value = topHeadLines.pagination.total;
-      return topHeadLines.data.filter((item: SingleNewsDataTypes) => item);
+      return topHeadLines.data.filter((item: ArticleDataTypes) => item);
     },
     server: false,
     lazy: true,
