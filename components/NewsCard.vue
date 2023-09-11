@@ -1,12 +1,12 @@
 <template>
   <NuxtLink to="/news/great-news" class="">
-    <div class="rounded-md relative max-h-[130px] overflow-hidden group">
+    <div class="rounded-md relative max-h-[300px] overflow-hidden group">
       <img
         @error="handleImageError"
-        :src="latestNews.image"
+        :src="article.cover_image"
         alt="news-img"
         class="h-full w-full group-hover:scale-150 transition-all duration-100"
-        v-if="latestNews.image"
+        v-if="article.cover_image"
       />
       <img
         src="~/assets/images/Placeholder_view_vector.svg.png"
@@ -27,16 +27,16 @@
       </span>
     </div>
     <div class="mt-4">
-      <h5 class="line-clamp-2 text-[14px]" v-text="latestNews.title" />
+      <h5 class="line-clamp-2 text-[14px]" v-text="article.title" />
 
       <div class="flex items-start mt-3 gap-2">
         <img
-          src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fHVzZXIlMjBpbWFnZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60"
+          :src="article.user.profile_image"
           alt="user-img"
           class="h-[30px] w-[30px] rounded-full object-cover"
         />
         <div class="w-full">
-          <p class="text-[12px] text-slate-700" v-text="latestNews.author" />
+          <p class="text-[12px] text-slate-700" v-text="article.user.name" />
           <span
             class="flex justify-between items-center text-slate-500 text-[12px]"
           >
@@ -50,11 +50,11 @@
 </template>
 
 <script setup lang="ts">
-import { SingleNewsDataTypes } from "~/types";
+import { ArticleDataTypes } from "~/types";
 import PlaceHolderImage from "~/assets/images/Placeholder_view_vector.svg.png";
 
 defineProps<{
-  latestNews: SingleNewsDataTypes;
+  article: ArticleDataTypes;
 }>();
 
 const handleImageError = (err: any) => {
