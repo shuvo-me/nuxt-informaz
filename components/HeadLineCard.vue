@@ -1,13 +1,13 @@
 <template>
   <NuxtLink :to="`/news/${headLine.title}`" class="flex gap-x-2">
     <img
-      v-if="!headLine.image"
+      v-if="!headLine.cover_image"
       src="~/assets/images/Placeholder_view_vector.svg.png"
       alt="headline-placeholder-img"
       class="object-cover h-[55px] w-[55px] rounded-md"
     />
     <img
-      :src="headLine.image"
+      :src="headLine.cover_image"
       alt="headline-img"
       class="object-cover h-[55px] w-[55px] rounded-md"
       v-else
@@ -19,19 +19,19 @@
         v-text="headLine.title"
       />
 
-      <div class="flex justify-between items-center mt-3">
-        <small
+      <div class="flex justify-end items-center mt-3">
+        <!-- <small
           class="text-[11px] bg-blue-100 text-blue-600 px-2 py-[2px] rounded-md"
           >NY news</small
-        >
+        > -->
         <div class="text-slate-500 text-[14px]">
           <small class="" role="button">
-            <i class="bi bi-eye-fill" />
-            4.6k
+            <i class="bi bi-message-fill" />
+            {{ headLine.comments_count }}
           </small>
           <small class="" role="button">
             <i class="bi bi-hand-thumbs-up-fill" />
-            77k
+            {{ headLine.public_reactions_count }}k
           </small>
         </div>
       </div>
@@ -40,11 +40,12 @@
 </template>
 
 <script setup lang="ts">
-import { SingleNewsDataTypes } from "~/types";
+import { ArticleDataTypes } from "~/types";
 import PlaceHolderImage from "~/assets/images/Placeholder_view_vector.svg.png";
 defineProps<{
-  headLine: SingleNewsDataTypes;
+  headLine: ArticleDataTypes;
 }>();
+
 const handleImageError = (err: any) => {
   err.target.src = PlaceHolderImage;
 };

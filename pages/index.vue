@@ -55,7 +55,7 @@
           type="button"
           class="hover:text-blue-600 transition-all duration-100 disabled:opacity-40"
           @click="headLinePage++"
-          :disabled="headLinePage >= totalHeadlinePages"
+          :disabled="headLinePage >= 5"
         >
           <i class="bi bi-arrow-right" />
         </button>
@@ -76,7 +76,7 @@
       <head-line-card
         :head-line="headLine"
         v-for="headLine in headLines"
-        :key="headLine?.title"
+        :key="headLine"
       />
     </div>
   </section>
@@ -166,16 +166,13 @@ const {
       },
     }),
   {
-    transform: (topHeadLines: any) => {
-      console.log({ topHeadLines });
-      totalHeadlines.value = topHeadLines.pagination.total;
-      return topHeadLines.data.filter((item: ArticleDataTypes) => item);
-    },
     server: false,
     lazy: true,
     watch: [headLinePage, category],
   }
 );
+
+console.log({ headLines });
 
 const { data: latesNews, pending: isLoadingLatestNews } = await useAsyncData(
   "latest-news",
@@ -191,7 +188,7 @@ const { data: latesNews, pending: isLoadingLatestNews } = await useAsyncData(
   {
     transform: (latestNews: any) => {
       totalLatestNews.value = latestNews.pagination.total;
-      return latestNews.data.filter((item: SingleNewsDataTypes) => item);
+      return latestNews.data.filter((item: ArticleDataTypes) => item);
     },
     server: false,
     lazy: true,
