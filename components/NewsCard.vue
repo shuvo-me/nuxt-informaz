@@ -43,8 +43,11 @@
           <span
             class="flex justify-between items-center text-slate-500 text-[12px]"
           >
-            <small class="text-[11px]">Photographer</small>
-            <small>2 Feb, 2033</small>
+            <small
+              class="text-[11px]"
+              v-text="`${article.reading_time_minutes} min read`"
+            />
+            <small v-text="$timeFormat(article.published_at)" />
           </span>
         </div>
       </div>
