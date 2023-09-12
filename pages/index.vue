@@ -42,30 +42,12 @@
   
   <script setup lang="ts" async>
 import { ref } from "vue";
-import { ArticleDataTypes } from "~/types";
-import newsCategories from "~/utils";
 
-const runtimeConfig = useRuntimeConfig();
-console.log({ cc: runtimeConfig.public });
+// const runtimeConfig = useRuntimeConfig();
 
 const length = ref<number>(7);
 const headLinePage = ref<number>(1);
-const latestNewsPage = ref<number>(0);
-const totalHeadlines = ref<number>(0);
-const totalLatestNews = ref<number>(0);
 const category = ref<string>("world-news");
-
-watch(category, (newCategory) => {
-  console.log({ newCategory });
-});
-
-const categories = computed(() => {
-  return newsCategories.slice(0, length.value);
-});
-
-const totalHeadlinePages = computed(() => {
-  return Math.ceil(totalHeadlines.value / 8);
-});
 
 const {
   data: articles,
