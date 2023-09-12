@@ -21,9 +21,6 @@
   
   <script setup lang="ts" async>
 import { ref } from "vue";
-
-// const runtimeConfig = useRuntimeConfig();
-
 const length = ref<number>(7);
 const headLinePage = ref<number>(1);
 const category = ref<string>("world-news");

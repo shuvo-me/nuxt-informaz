@@ -38,9 +38,17 @@
         </div>
       </div>
       <div>
-        <ul class="flex justify-center items-center">
-          <li class="text-black/[0.7] hover:text-black" role="button">
-            <span> React </span>
+        <ul class="flex justify-center items-center pb-2">
+          <li
+            :class="`hover:text-black text-black/[0.7] text-[15px] capitalize mx-2  ${
+              selectedTag ? 'text-black' : ''
+            }`"
+            role="button"
+            v-for="tag in tags"
+            :key="tag"
+            @click="() => setSelectedTag(tag.name)"
+          >
+            <span v-text="tag.name" />
           </li>
         </ul>
       </div>
@@ -76,4 +84,39 @@ const navLinks = [
   },
 ];
 const navBtnIcons = [];
+
+const selectedTag = ref<string>("");
+
+const {
+  data: tags,
+  pending,
+  error,
+  refresh,
+} = await useAsyncData(
+  "tags",
+  () =>
+    $fetch(`https://dev.to/api/tags`, {
+      query: {
+        page: 1,
+        per_page: 7,
+      },
+    }),
+  {
+    server: false,
+    lazy: true,
+    transform: (data: any) => {
+      selectedTag.value = data[0].name;
+      return data;
+    },
+  }
+);
+
+const setSelectedTag = (tag: string) => {
+  selectedTag.value = tag;
+};
+
+watch(selectedTag, (newValue) => {
+  console.log({ newValue });
+});
+console.log({ check: tags });
 </script>
