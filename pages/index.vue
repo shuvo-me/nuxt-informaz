@@ -38,10 +38,8 @@ const {
   () =>
     $fetch(`https://dev.to/api/articles?top=4`, {
       query: {
-        // tag: category.value,
         page: headLinePage.value.toString(),
         per_page: 6,
-        // apikey: "pub_288645e192f85eb5f95b49fa7d6ae862e79cb",
       },
     }),
   {

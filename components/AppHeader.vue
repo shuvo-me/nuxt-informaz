@@ -37,6 +37,13 @@
           </ul>
         </div>
       </div>
+      <div>
+        <ul class="flex justify-center items-center">
+          <li class="text-black/[0.7] hover:text-black" role="button">
+            <span> React </span>
+          </li>
+        </ul>
+      </div>
     </app-container>
   </header>
 </template>
