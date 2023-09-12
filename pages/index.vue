@@ -1,26 +1,5 @@
 <template>
   <section class="mt-5 pb-5">
-    <!-- <div class="text-slate-500 text-[17px] flex justify-between items-center">
-      <div class="flex gap-5 items-center">
-        <button
-          class="hover:text-blue-600 transition-all duration-100 disabled:opacity-40"
-          role="button"
-          :disabled="latestNewsPage <= 0"
-          @click="latestNewsPage--"
-        >
-          <i class="bi bi-arrow-left" />
-        </button>
-        <small>Page: {{ latestNewsPage }}/{{ totalLatestNews }}</small>
-        <button
-          type="button"
-          class="hover:text-blue-600 transition-all duration-100 disabled:opacity-40"
-          @click="latestNewsPage++"
-          :disabled="latestNewsPage >= totalLatestNews"
-        >
-          <i class="bi bi-arrow-right" />
-        </button>
-      </div>
-    </div> -->
     <div
       class="grid grid-cols-1 min-[500px]:grid-cols-2 gap-10 md:gap-11 mt-4"
       v-if="pending"
