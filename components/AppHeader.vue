@@ -38,7 +38,7 @@
         </div>
       </div>
       <div>
-        <ul class="flex justify-center items-center pb-2">
+        <ul class="flex justify-center items-center pb-2 flex-wrap">
           <li
             :class="`hover:text-black  text-[15px] capitalize mx-2 ${
               selectedTag === tag.name ? 'text-black' : 'text-black/[0.7]'

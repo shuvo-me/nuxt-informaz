@@ -31,3 +31,18 @@ html,body{
 .active{
     @apply bg-blue-600 text-white;
 }
+
+/* pagination */
+.pagination-container {
+    @apply flex gap-x-5  text-[13px] p-2 flex-wrap
+  }
+  .paginate-buttons {
+  @apply h-[30px] w-[30px] rounded-md text-black/[0.4] hover:text-white hover:bg-blue-600 
+  }
+
+  .active-page {
+    @apply text-white bg-blue-600
+  }
+  /* .active-page:hover {
+    background-color: #2988c8;
+  } */

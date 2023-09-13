@@ -47,7 +47,10 @@
               class="text-[11px]"
               v-text="`${article.reading_time_minutes} min read`"
             />
-            <small v-text="$timeFormat(article.published_at)" />
+            <small
+              v-text="$timeFormat(article.published_at)"
+              class="text-[13px]"
+            />
           </span>
         </div>
       </div>
