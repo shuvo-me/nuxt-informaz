@@ -2,7 +2,7 @@
   <div>
     <div
       role="status"
-      class="rounded-md relative h-[130px] w-full flex justify-center items-center overflow-hidden bg-gray-300 animate-pulse dark:bg-gray-700"
+      class="rounded-md relative h-[233px] w-full flex justify-center items-center overflow-hidden bg-gray-300 animate-pulse dark:bg-gray-700"
     >
       <svg
         class="w-10 h-10 text-gray-200 dark:text-gray-600"
@@ -33,9 +33,9 @@
       </svg>
       <div>
         <div
-          class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-32 mb-2"
+          class="h-5 bg-gray-200 rounded-full dark:bg-gray-700 w-32 mb-2"
         ></div>
-        <div class="w-48 h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
+        <div class="w-48 h-5 bg-gray-200 rounded-full dark:bg-gray-700"></div>
       </div>
     </div>
   </div>
