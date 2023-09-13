@@ -58,7 +58,6 @@
 
 <script setup lang="ts">
 import { useStore } from "~/store";
-console.log({ ss: useStore() });
 const selectedTag = ref<string>("");
 const { setTag } = useStore();
 const val = ref<number>(2);

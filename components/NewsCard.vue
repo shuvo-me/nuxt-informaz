@@ -1,6 +1,6 @@
 <template>
   <NuxtLink to="/news/great-news" class="">
-    <div class="rounded-md relative max-h-[300px] overflow-hidden group">
+    <div class="rounded-md relative max-h-[233px] overflow-hidden group">
       <img
         @error="handleImageError"
         :src="article.cover_image"

@@ -19,7 +19,7 @@
   </section>
 </template>
   
-  <script setup lang="ts" async>
+  <script setup lang="ts">
 import { storeToRefs } from "pinia";
 import { useStore } from "~/store";
 import { ref } from "vue";
@@ -28,7 +28,6 @@ const headLinePage = ref<number>(1);
 const category = ref<string>("world-news");
 const store = useStore();
 const { tag } = storeToRefs(store);
-console.log({ s: store.tag });
 
 const {
   data: articles,
