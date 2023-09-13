@@ -20,10 +20,15 @@
 </template>
   
   <script setup lang="ts" async>
+import { storeToRefs } from "pinia";
+import { useStore } from "~/store";
 import { ref } from "vue";
 const length = ref<number>(7);
 const headLinePage = ref<number>(1);
 const category = ref<string>("world-news");
+const store = useStore();
+const { tag } = storeToRefs(store);
+console.log({ s: store.tag });
 
 const {
   data: articles,
@@ -37,12 +42,13 @@ const {
       query: {
         page: headLinePage.value.toString(),
         per_page: 6,
+        tag: tag.value,
       },
     }),
   {
     server: false,
     lazy: true,
-    watch: [headLinePage, category],
+    watch: [headLinePage, category, tag],
   }
 );
 </script>

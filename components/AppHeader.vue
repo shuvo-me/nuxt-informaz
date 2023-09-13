@@ -40,9 +40,9 @@
       <div>
         <ul class="flex justify-center items-center pb-2">
           <li
-            :class="`hover:text-black text-black/[0.7] text-[15px] capitalize mx-2  ${
-              selectedTag ? 'text-black' : ''
-            }`"
+            :class="`hover:text-black  text-[15px] capitalize mx-2 ${
+              selectedTag === tag.name ? 'text-black' : 'text-black/[0.7]'
+            } `"
             role="button"
             v-for="tag in tags"
             :key="tag"
@@ -57,36 +57,11 @@
 </template>
 
 <script setup lang="ts">
-const navLinks = [
-  {
-    title: "Trending",
-    query: "trending",
-  },
-  {
-    title: "Top list",
-    query: "top-list",
-  },
-  {
-    title: "Programming",
-    query: "programming",
-  },
-  {
-    title: "Interaction",
-    query: "interaction",
-  },
-  {
-    title: "Designer",
-    query: "designer",
-  },
-  {
-    title: "Latest news",
-    query: "latest-news",
-  },
-];
-const navBtnIcons = [];
-
+import { useStore } from "~/store";
+console.log({ ss: useStore() });
 const selectedTag = ref<string>("");
-
+const { setTag } = useStore();
+const val = ref<number>(2);
 const {
   data: tags,
   pending,
@@ -113,10 +88,6 @@ const {
 
 const setSelectedTag = (tag: string) => {
   selectedTag.value = tag;
+  setTag(tag);
 };
-
-watch(selectedTag, (newValue) => {
-  console.log({ newValue });
-});
-console.log({ check: tags });
 </script>
