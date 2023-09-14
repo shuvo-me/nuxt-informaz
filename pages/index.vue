@@ -16,7 +16,7 @@
         :key="article"
       />
     </div>
-    <div class="flex justify-center mt-10">
+    <div class="flex justify-center mt-10" v-if="articles?.length">
       <vue-awesome-paginate
         :total-items="50"
         v-model="page"
