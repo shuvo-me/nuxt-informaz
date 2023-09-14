@@ -81,8 +81,17 @@
   </section>
 </template>
 
-<script>
-export default {};
+<script setup lang="ts">
+const route = useRoute();
+// console.log({ route });
+const {
+  data: article,
+  pending,
+  error,
+} = await useFetch(`https://dev.to/api/articles/${route.params.slug}`, {
+  lazy: true,
+});
+console.log({ article });
 </script>
 
 <style>

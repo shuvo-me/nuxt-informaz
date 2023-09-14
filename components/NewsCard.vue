@@ -1,5 +1,5 @@
 <template>
-  <NuxtLink to="/news/great-news" class="">
+  <nuxt-link :to="`/news/${article.id}`" class="">
     <div class="rounded-md relative max-h-[233px] overflow-hidden group">
       <img
         @error="handleImageError"
@@ -55,7 +55,7 @@
         </div>
       </div>
     </div>
-  </NuxtLink>
+  </nuxt-link>
 </template>
 
 <script setup lang="ts">
