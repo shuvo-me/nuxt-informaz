@@ -1,10 +1,12 @@
 <template>
   <section class="pb-10">
-    <div class="flex flex-wrap gap-x-5">
+    <article-details-skeleton-loader v-if="pending" />
+
+    <div class="flex flex-wrap gap-x-5" v-else>
       <div class="left-details">
         <h4
           v-text="article?.title"
-          class="text-black text-[24px] line-clamp-2"
+          class="text-black text-[24px] line-clamp-2 font-semibold"
         />
         <div class="flex flex-wrap items-center my-3 gap-x-10">
           <div class="flex flex-wrap gap-x-2">
@@ -45,7 +47,10 @@
             </span>
           </div>
         </div>
-        <div class="my-5 rounded-md overflow-hidden">
+        <div
+          class="my-5 rounded-md overflow-hidden"
+          v-if="article?.cover_image"
+        >
           <img :src="article?.cover_image || ''" alt="article cover" />
         </div>
         <div>
@@ -62,7 +67,6 @@ import { ArticleDetailsReturnType } from "~/types";
 
 const route = useRoute();
 const articleId = route.params.slug;
-console.log({ route });
 const {
   data: article,
   pending,

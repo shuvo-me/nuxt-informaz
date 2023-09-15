@@ -37,7 +37,7 @@
           </ul>
         </div>
       </div>
-      <div>
+      <div v-if="$route.name !== 'news-slug'">
         <ul class="flex justify-center items-center pb-2 flex-wrap">
           <li
             :class="`hover:text-black  text-[15px] capitalize mx-2 ${
