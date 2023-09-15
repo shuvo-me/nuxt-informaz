@@ -59,14 +59,14 @@
 
 <script setup lang="ts">
 const route = useRoute();
-// console.log({ route });
+console.log({ route });
 const {
   data: article,
   pending,
   error,
-} = await useFetch(`https://dev.to/api/articles/${route.params.slug}`, {
-  lazy: true,
-});
+} = await useAsyncData(
+  `https://dev.to/api/articles/${route.params.slug[0]}/${route.params.slug[1]}`
+);
 </script>
 
 <style>
