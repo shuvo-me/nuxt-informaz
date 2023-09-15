@@ -6,7 +6,7 @@
           v-text="article?.title"
           class="text-black text-[24px] line-clamp-2"
         />
-        <div class="flex flex-wrap items-center justify-between my-3">
+        <div class="flex flex-wrap items-center my-3 gap-x-10">
           <div class="flex flex-wrap gap-x-2">
             <div
               class="border border-blue-400 h-[50px] w-[50px] rounded-full overflow-hidden"
@@ -71,7 +71,7 @@ const {
   "article-details",
   (): Promise<ArticleDetailsReturnType> =>
     $fetch(`https://dev.to/api/articles/${articleId}`),
-  { lazy: true }
+  { lazy: true, server: false }
 );
 </script>
 
