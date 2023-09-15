@@ -39,6 +39,7 @@
 </template>
   
 <script setup lang="ts">
+import { ArticleDataTypes } from "~/types";
 import { storeToRefs } from "pinia";
 import { useStore } from "~/store";
 import { ref } from "vue";

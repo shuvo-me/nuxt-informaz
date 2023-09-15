@@ -46,7 +46,7 @@
           </div>
         </div>
         <div class="my-5 rounded-md overflow-hidden">
-          <img :src="article?.cover_image" alt="article cover" />
+          <img :src="article?.cover_image || ''" alt="article cover" />
         </div>
         <div>
           <p v-html="$md(article?.body_markdown || '')" />
@@ -58,14 +58,20 @@
 </template>
 
 <script setup lang="ts">
+import { ArticleDetailsReturnType } from "~/types";
+
 const route = useRoute();
+const articleId = route.params.slug;
 console.log({ route });
 const {
   data: article,
   pending,
   error,
 } = await useAsyncData(
-  `https://dev.to/api/articles/${route.params.slug[0]}/${route.params.slug[1]}`
+  "article-details",
+  (): Promise<ArticleDetailsReturnType> =>
+    $fetch(`https://dev.to/api/articles/${articleId}`),
+  { lazy: true }
 );
 </script>
 
