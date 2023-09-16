@@ -112,10 +112,11 @@
             <p>No item found</p>
           </div>
           <div class="grid grid-cols-1 gap-y-5" v-else>
-            <div
+            <nuxt-link
               v-for="item in writerArticles"
               :key="item.id"
               class="flex items-start gap-x-3"
+              :to="`/news/${item.id}/${item.user.username}`"
             >
               <img
                 :src="item.cover_image"
@@ -132,7 +133,7 @@
                   {{ $timeFormat(item.published_at) }}
                 </small>
               </div>
-            </div>
+            </nuxt-link>
           </div>
         </div>
       </div>
