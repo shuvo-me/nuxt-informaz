@@ -3,7 +3,13 @@ export default defineNuxtConfig({
   imports:{
     dirs: ['store']
   },
-  devtools: { enabled: true },
+  devtools: {
+    enabled: true,
+
+    timeline: {
+      enabled: true,
+    },
+  },
   modules: ['@nuxtjs/tailwindcss',['@pinia/nuxt',{
     autoImports: ['defineStore', 'acceptHMRUpdate'],
   }],'nuxt-bootstrap-icons'],
