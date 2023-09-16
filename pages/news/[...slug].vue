@@ -103,16 +103,46 @@
             />
           </div>
         </div>
+        <div>
+          <h4 class="text-[16px] font-semibold">Writer's more articles:</h4>
+          <div class="grid grid-cols-1 gap-y-2">
+            <div
+              v-for="item in writerArticles"
+              :key="item.id"
+              class="flex items-start gap-x-3"
+            >
+              <div class="max-h-[50px] max-w-[50px] rounded-md overflow-hidden">
+                <img
+                  :src="item.cover_image"
+                  :alt="item.slug"
+                  class="h-full w-full object-cover"
+                />
+              </div>
+              <div>
+                <p
+                  v-text="item.title"
+                  class="text-[15px] text-black/[0.9] line-clamp-2"
+                />
+                <small class="text-gray-500 text-[13px]">
+                  <i class="bi bi-clock"></i>
+                  {{ $timeFormat(item.published_at) }}
+                </small>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 </template>
 
 <script setup lang="ts">
-import { ArticleDetailsReturnType } from "~/types";
+import { ArticleDataTypes, ArticleDetailsReturnType } from "~/types";
 
 const route = useRoute();
-const articleId = route.params.slug;
+const articleId = route.params.slug[0];
+const userName = route.params.slug[1];
+const page = ref<number>(1);
 const {
   data: article,
   pending,
@@ -123,6 +153,29 @@ const {
     $fetch(`https://dev.to/api/articles/${articleId}`),
   { lazy: true, server: false }
 );
+
+console.log({ article });
+
+const { data: writerArticles } = await useAsyncData(
+  "writer-articles",
+  (): Promise<Array<ArticleDataTypes>> =>
+    $fetch(
+      `
+https://dev.to/api/articles?username=${userName}`,
+      {
+        query: {
+          page: page.value,
+          per_page: 5,
+        },
+      }
+    ),
+  {
+    lazy: true,
+    server: false,
+    watch: [page],
+  }
+);
+// console.log({ cc: toRaw(writerArticles) });
 </script>
 
 <style></style>

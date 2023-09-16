@@ -74,3 +74,4 @@ export interface ArticleDetailsReturnType{
   "body_markdown": string,
   "user": UserDataTypes
 }
+

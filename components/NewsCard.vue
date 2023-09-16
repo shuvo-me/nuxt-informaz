@@ -1,5 +1,5 @@
 <template>
-  <nuxt-link :to="`/news/${article.id}`" class="">
+  <nuxt-link :to="`/news/${article.id}/${article.user.username}`" class="">
     <div class="rounded-md relative max-h-[233px] overflow-hidden group">
       <img
         @error="handleImageError"
