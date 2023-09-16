@@ -2,7 +2,7 @@
   <section class="pb-10">
     <article-details-skeleton-loader v-if="pending" />
 
-    <div class="flex gap-x-[70px] flex-wrap" v-else>
+    <div class="flex gap-x-[70px] flex-wrap xl:flex-nowrap" v-else>
       <div class="left-details max-w-[800px]">
         <h4
           v-text="article?.title"
@@ -55,11 +55,9 @@
         >
           <img :src="article?.cover_image || ''" alt="article cover" />
         </div>
-        <div>
-          <p v-html="$md(article?.body_markdown || '')" />
-        </div>
+        <div v-html="article?.body_html" />
       </div>
-      <div class="right-section flex-grow-1 mt-10">
+      <div class="right-section flex-1 mt-10">
         <div class="social-networks">
           <h4 class="text-[16px] font-semibold">Share on:</h4>
           <div class="mt-4 grid grid-cols-2 gap-6">
@@ -91,6 +89,18 @@
               </span>
               <p>Twitter</p>
             </div>
+          </div>
+        </div>
+        <div class="tags mt-6 space-y-3" v-if="article?.tags?.length">
+          <h4 class="text-[16px] font-semibold">Related Tags:</h4>
+          <div class="flex flex-wrap gap-3">
+            <span
+              role="button"
+              v-for="tag in article?.tags"
+              :key="tag"
+              v-text="`#${tag}`"
+              class="bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-blue-900 dark:text-blue-300"
+            />
           </div>
         </div>
       </div>
