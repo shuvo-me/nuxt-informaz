@@ -19,9 +19,3 @@
   </app-container>
   <app-footer />
 </template>
-
-<script setup lang="ts">
-</script>
-
-<style>
-</style>

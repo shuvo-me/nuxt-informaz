@@ -75,3 +75,16 @@ export interface ArticleDetailsReturnType{
   "user": UserDataTypes
 }
 
+export interface UserDetailsDataTypes{
+  "type_of": string,
+  "id": number,
+  "username": string,
+  "name": string,
+  "twitter_username": string,
+  "github_username": string,
+  "summary": string,
+  "location": string,
+  "website_url": string,
+  "joined_at": string,
+  "profile_image": string
+}

@@ -12,6 +12,8 @@
           <div class="flex flex-wrap gap-x-2">
             <div
               class="border border-blue-400 h-[50px] w-[50px] rounded-full overflow-hidden"
+              role="button"
+              @click="isOpen = true"
             >
               <img
                 :src="article?.user?.profile_image"
@@ -139,11 +141,25 @@
       </div>
     </div>
   </section>
+
+  <writer-details-modal
+    v-show="isOpen"
+    @hide-modal="isOpen = false"
+    :user-details="userDetails"
+  />
 </template>
 
 <script setup lang="ts">
-import { ArticleDataTypes, ArticleDetailsReturnType } from "~/types";
+import {
+  ArticleDataTypes,
+  ArticleDetailsReturnType,
+  UserDetailsDataTypes,
+} from "~/types";
+import { storeToRefs } from "pinia";
+import { useStore } from "#imports";
 
+const { showModal } = useStore();
+const isOpen = ref<boolean>(false);
 const route = useRoute();
 const articleId = route.params.slug[0];
 const userName = route.params.slug[1];
@@ -158,8 +174,6 @@ const {
     $fetch(`https://dev.to/api/articles/${articleId}`),
   { lazy: true, server: false }
 );
-
-console.log({ article });
 
 const { data: writerArticles } = await useAsyncData(
   "writer-articles",
@@ -180,7 +194,21 @@ https://dev.to/api/articles?username=${userName}`,
     watch: [page],
   }
 );
-// console.log({ cc: toRaw(writerArticles) });
+
+const { data: userDetails } = await useAsyncData(
+  "user-details",
+  (): Promise<UserDetailsDataTypes> =>
+    $fetch(`https://dev.to/api/users/by_username?url=${userName}`),
+  {
+    lazy: true,
+    server: false,
+    watch: [userName],
+  }
+);
+
+console.log({ user: toRaw(userDetails) });
+
+watch(isOpen, (n) => console.log({ n }));
 </script>
 
 <style></style>
