@@ -103,25 +103,29 @@
             />
           </div>
         </div>
-        <div>
-          <h4 class="text-[16px] font-semibold">Writer's more articles:</h4>
-          <div class="grid grid-cols-1 gap-y-2">
+        <div class="space-y-3 mt-8">
+          <h4 class="text-[16px] font-semibold flex items-center gap-x-4">
+            Writer's more articles:
+          </h4>
+          <div v-if="!writerArticles?.length">
+            <img src="~/assets/images/not-found.png" />
+            <p>No item found</p>
+          </div>
+          <div class="grid grid-cols-1 gap-y-5" v-else>
             <div
               v-for="item in writerArticles"
               :key="item.id"
               class="flex items-start gap-x-3"
             >
-              <div class="max-h-[50px] max-w-[50px] rounded-md overflow-hidden">
-                <img
-                  :src="item.cover_image"
-                  :alt="item.slug"
-                  class="h-full w-full object-cover"
-                />
-              </div>
+              <img
+                :src="item.cover_image"
+                :alt="item.slug"
+                class="h-full object-cover w-[100px] rounded-md"
+              />
               <div>
                 <p
                   v-text="item.title"
-                  class="text-[15px] text-black/[0.9] line-clamp-2"
+                  class="text-[14px] text-black/[0.9] line-clamp-2 font-semibold"
                 />
                 <small class="text-gray-500 text-[13px]">
                   <i class="bi bi-clock"></i>
@@ -165,7 +169,7 @@ https://dev.to/api/articles?username=${userName}`,
       {
         query: {
           page: page.value,
-          per_page: 5,
+          per_page: 4,
         },
       }
     ),
