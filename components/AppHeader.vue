@@ -10,10 +10,12 @@
 
         <div class="nav-btns">
           <ul class="flex items-center gap-4">
-            <li>
+            <li v-if="$route.name == 'news-slug'" @click="loved = !loved">
               <button
                 type="button"
-                class="border border-slate-200 h-[35px] w-[35px] rounded-md text-[14px] text-slate-500 flex items-center justify-center"
+                :class="`border border-slate-200 h-[35px] w-[35px] rounded-md text-[14px] ${
+                  loved ? 'text-red-500 bg-red-50' : 'text-slate-500'
+                } flex items-center justify-center`"
               >
                 <BootstrapIconHeartFill />
               </button>
@@ -59,6 +61,7 @@
 <script setup lang="ts">
 import { useStore } from "~/store";
 const selectedTag = ref<string>("");
+const loved = ref<boolean>(false);
 const { setTag } = useStore();
 const val = ref<number>(2);
 const {

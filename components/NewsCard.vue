@@ -34,7 +34,10 @@
       />
       <div class="flex items-start mt-3 gap-2">
         <img
-          :src="article.user.profile_image"
+          :src="
+            article.user.profile_image ||
+            '~/assets/images/Placeholder_view_vector.svg.png'
+          "
           alt="user-img"
           class="h-[30px] w-[30px] rounded-full object-cover"
         />
