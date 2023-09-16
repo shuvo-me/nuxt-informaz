@@ -121,8 +121,8 @@
               :to="`/news/${item.id}/${item.user.username}`"
             >
               <img
-                :src="item.cover_image"
-                :alt="item.slug"
+                :src="item?.cover_image ?? PlaceHolderImage"
+                :alt="item?.slug"
                 class="h-full object-cover w-[100px] rounded-md"
               />
               <div>
@@ -150,12 +150,12 @@
 </template>
 
 <script setup lang="ts">
+import PlaceHolderImage from "~/assets/images/Placeholder_view_vector.svg.png";
 import {
   ArticleDataTypes,
   ArticleDetailsReturnType,
   UserDetailsDataTypes,
 } from "~/types";
-import { storeToRefs } from "pinia";
 import { useStore } from "#imports";
 
 const { showModal } = useStore();
@@ -205,10 +205,6 @@ const { data: userDetails } = await useAsyncData(
     watch: [userName],
   }
 );
-
-console.log({ user: toRaw(userDetails) });
-
-watch(isOpen, (n) => console.log({ n }));
 </script>
 
 <style></style>
