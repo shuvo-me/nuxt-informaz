@@ -1,10 +1,8 @@
 <template>
   <div class="animate-pulse">
-    <div
-      class="flex items-center justify-center h-48 mb-4 bg-gray-300 rounded dark:bg-gray-700"
-    >
+    <div class="flex items-center justify-center h-48 mb-4 bg-gray-300 rounded">
       <svg
-        class="w-10 h-10 text-gray-200 dark:text-gray-600"
+        class="w-10 h-10 text-gray-200"
         aria-hidden="true"
         xmlns="http://www.w3.org/2000/svg"
         fill="currentColor"

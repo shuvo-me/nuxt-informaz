@@ -7,10 +7,10 @@
     >
       <div class="relative w-full max-w-2xl max-h-full mx-auto mt-20">
         <!-- Modal content -->
-        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+        <div class="relative bg-white rounded-lg shadow">
           <!-- Modal header -->
           <div
-            class="flex flex-wrap md:flex-nowrap items-start justify-between p-4 border-b rounded-t dark:border-gray-600 modal-header-bg min-h-[140px]"
+            class="flex flex-wrap md:flex-nowrap items-start justify-between p-4 border-b rounded-t modal-header-bg min-h-[140px]"
           ></div>
           <!-- Modal body -->
           <div

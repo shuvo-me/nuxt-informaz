@@ -1,11 +1,9 @@
 <template>
   <div role="status" class="animate-pulse">
-    <div
-      class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"
-    ></div>
+    <div class="h-2.5 bg-gray-200 rounded-full w-48 mb-4"></div>
     <div class="flex items-center mt-4 space-x-3 mb-4">
       <svg
-        class="w-10 h-10 text-gray-200 dark:text-gray-700"
+        class="w-10 h-10 text-gray-200"
         aria-hidden="true"
         xmlns="http://www.w3.org/2000/svg"
         fill="currentColor"
@@ -16,17 +14,13 @@
         />
       </svg>
       <div>
-        <div
-          class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-32 mb-2"
-        ></div>
-        <div class="w-48 h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
+        <div class="h-2.5 bg-gray-200 rounded-full w-32 mb-2"></div>
+        <div class="w-48 h-2 bg-gray-200 rounded-full"></div>
       </div>
     </div>
-    <div
-      class="flex items-center justify-center h-48 mb-4 bg-gray-300 rounded dark:bg-gray-700"
-    >
+    <div class="flex items-center justify-center h-48 mb-4 bg-gray-300 rounded">
       <svg
-        class="w-10 h-10 text-gray-200 dark:text-gray-600"
+        class="w-10 h-10 text-gray-200"
         aria-hidden="true"
         xmlns="http://www.w3.org/2000/svg"
         fill="currentColor"
@@ -40,12 +34,10 @@
         />
       </svg>
     </div>
-    <div
-      class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"
-    ></div>
-    <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 mb-2.5"></div>
-    <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 mb-2.5"></div>
-    <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
+    <div class="h-2.5 bg-gray-200 rounded-full w-48 mb-4"></div>
+    <div class="h-2 bg-gray-200 rounded-full mb-2.5"></div>
+    <div class="h-2 bg-gray-200 rounded-full mb-2.5"></div>
+    <div class="h-2 bg-gray-200 rounded-full"></div>
   </div>
 </template>
 
